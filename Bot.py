@@ -1,9 +1,3 @@
-"""
-Discord-бот "Ненависть к Егору Криду".
-Следит за чатом и кидает предупреждение, если кто-то упоминает
-слова, связанные с Егором Кридом (список слов лежит в keywords.txt).
-"""
-
 import os
 import re
 import time
@@ -13,16 +7,13 @@ from pathlib import Path
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
-from aiohttp import web  # нужен для health-check на хостингах типа Koyeb
-
-# ---------- Настройка логов ----------
+from aiohttp import web  
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
 )
 log = logging.getLogger("egor-kreed-bot")
 
-# ---------- Загрузка токена из .env ----------
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 
@@ -36,7 +27,7 @@ KEYWORDS_FILE = Path(__file__).parent / "keywords.txt"
 COOLDOWN_SECONDS = 30
 
 intents = discord.Intents.default()
-intents.message_content = True  # обязательно, иначе бот не увидит текст сообщений
+intents.message_content = True  
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
